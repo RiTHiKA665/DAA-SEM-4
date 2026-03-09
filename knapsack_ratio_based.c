@@ -64,6 +64,6 @@ int main()
     	if(x[i]==0)
     	printf("%d\t",i+1);
 	}
-    printf("Maximum profit = %.2f\n",tot_profit);
+    printf("\nMaximum profit = %.2f\n",tot_profit);
     return 0;
 }
