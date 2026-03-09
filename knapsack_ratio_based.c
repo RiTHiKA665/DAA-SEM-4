@@ -51,6 +51,19 @@ int main()
             break;
         }
     }
+    printf("Items considered are:\n");
+    
+    for(i=0;i<n;i++)
+    {
+    	if(x[i]>0)
+    	printf("%d\t",i+1);
+	}
+    printf("\nItems not considered are:\n");
+    for(i=0;i<n;i++)
+    {
+    	if(x[i]==0)
+    	printf("%d\t",i+1);
+	}
     printf("Maximum profit = %.2f\n",tot_profit);
     return 0;
 }
