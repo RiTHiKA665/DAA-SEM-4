@@ -14,12 +14,11 @@ int main()
     printf("Enter weights:\n");
     for(i=0;i<n;i++)
         scanf("%f",&w[i]);
-
     for(i=0;i<n;i++)
         ratio[i] = p[i]/w[i];
     for(i=0;i<n;i++)
-        for(j=i+1;j<n;j++)
-            if(ratio[i] < ratio[j])
+        {for(j=i+1;j<n;j++)
+            {if(ratio[i] < ratio[j])
             {
                 temp = ratio[i];
                 ratio[i] = ratio[j];
@@ -32,8 +31,7 @@ int main()
                 temp = w[i];
                 w[i] = w[j];
                 w[j] = temp;
-            }
-
+            }}}
     for(i=0;i<n;i++)
         x[i] = 0;
     printf("Enter capacity: ");
