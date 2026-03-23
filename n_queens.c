@@ -1,30 +1,43 @@
 #include <stdio.h>
+ int N;
+ int board[20][20];
+ int found = 0;   
+ int isSafe(int row, int col) {
+ int i, j;
+ 
+for (i = 0; i < col; i++)
+ if (board[row][i])
+ return 0;
+for (i = row, j = col; i >= 0 && j >= 0; i--, j--)
+ if (board[i][j])
+ return 0;
+for (i = row, j = col; i < N && j >= 0; i++, j--)
+ if (board[i][j])
+ return 0;
+ return 1;
+}
+ void solve(int col) {
+if (col == N) {
+ found = 1;  
+ for (int i = 0; i < N; i++) {
+ for (int j = 0; j < N; j++)
+ printf("%d ", board[i][j]);
+ printf("\n");}
+ printf("\n");
+ return;
+}
+ for (int i = 0; i < N; i++) {
+  if (isSafe(i, col)) {
+ board[i][col] = 1;
+ solve(col + 1);
+ board[i][col] = 0;
+} }
+}
 int main() {
-int n, graph[10][10], visited[10] = {0};
-int stack[10], top = -1;
-int start, i, first = 1;
-printf("Enter number of nodes: ");
-scanf("%d", &n);
-printf("Enter adjacency matrix:\n");
-for (int i = 0; i < n; i++)
-for (int j = 0; j < n; j++)
-scanf("%d", &graph[i][j]);
-printf("Enter starting node: ");
-scanf("%d", &start);
-printf("DFS Path: ");
-stack[++top] = start;
-while (top != -1) {
-int node = stack[top--];
-if (visited[node] == 0) {
-if (!first) printf(" -> ");
-printf("%d", node);
-first = 0;
-visited[node] = 1;
-for (i = n - 1; i >= 0; i--) {
-if (graph[node][i] == 1 && visited[i] == 0) {
-stack[++top] = i; }
- }
-  }
-   }
-  return 0;
+    printf("Enter N: ");
+    scanf("%d", &N);
+    solve(0);
+    if (!found)   
+      printf("No solution exists\n");
+return 0;
 }
